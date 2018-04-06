@@ -2,27 +2,51 @@ package com.kainanpr.cursomc.dto;
 
 import java.io.Serializable;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+
+import com.kainanpr.cursomc.services.validation.ClienteInsert;
+
+@ClienteInsert //Criar anotação customizada
 public class ClienteNewDTO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
 	//Dados da classe Cliente
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Length(min=5, max=120, message="O tamanho deve ser entre 5 e 120 caracteres")
 	private String nome;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
+	@Email(message="Email inválido")
 	private String email;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String cpfOuCnpj;
+	
 	private Integer tipo;
 	
 	//Dados da classe Endereco
-	private Integer id;
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String logradouro;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String numero;
+	
 	private String complemento;
+	
 	private String bairro;
+	
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String cep;
 	
 	//Dados da classe Telefone
+	@NotEmpty(message="Preenchimento obrigatório")
 	private String telefone1;
+	
 	private String telefone2;
+	
 	private String telefone3;
 	
 	//Dados da classe Cidade
@@ -60,14 +84,6 @@ public class ClienteNewDTO implements Serializable{
 
 	public void setTipo(Integer tipo) {
 		this.tipo = tipo;
-	}
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
 	}
 
 	public String getLogradouro() {
