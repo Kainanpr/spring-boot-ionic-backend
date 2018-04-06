@@ -41,6 +41,9 @@ public class CategoriaResource {
 	public ResponseEntity<Void> insert(@Valid @RequestBody CategoriaDTO objDTO) {
 		Categoria obj = service.fromDTO(objDTO);
 		
+		//Adicionando inserção que foi apagado incorretamente
+		obj = service.insert(obj);
+		
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{id}").buildAndExpand(obj.getId()).toUri();
 		
